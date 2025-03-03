@@ -29,14 +29,14 @@ public class BOJ_3078 {
         int start = 0;
         int end = K+1;
 
-        for (int i = start; i < end && i < N; i++) {
+        for (int i = start; i < end; i++) {
             //친구 이름 길이 저장
             nameSizeMap.put(friends[i],
                     nameSizeMap.getOrDefault(friends[i], 0) + 1);
         }
 
         //투포인터 이동
-        while (start < N) {
+        while (start < N-1) {
             //범위 내의 자신을 제외한 이름 길이가 같은 친구 수 저장
             friendsCount += nameSizeMap.get(friends[start]) - 1;
 
