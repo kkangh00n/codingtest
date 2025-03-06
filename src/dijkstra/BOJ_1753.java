@@ -39,7 +39,6 @@ public class BOJ_1753 {
 
         PriorityQueue<Edge> pq = new PriorityQueue<>();
         pq.add(new Edge(start,0));
-        dis[start] = 0;
 
         while(!pq.isEmpty()) {
             Edge edge = pq.poll();
@@ -51,14 +50,14 @@ public class BOJ_1753 {
             }
 
             visited[current] = true;
+            dis[current] = currentCost;
 
             ArrayList<Edge> nextEdges = edges[current];
             for (Edge nextEdge : nextEdges) {
                 int next = nextEdge.vertex;
-                int nextCost = nextEdge.cost + currentCost;
+                int nextCost = currentCost + nextEdge.cost;
 
-                pq.add(new Edge(next, nextCost));
-                dis[next] = Math.min(dis[next], nextCost);
+                pq.add(new Edge(next, Math.min(dis[next], nextCost)));
             }
         }
 

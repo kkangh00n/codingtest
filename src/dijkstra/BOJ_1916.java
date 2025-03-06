@@ -44,7 +44,6 @@ public class BOJ_1916 {
 
     public static void solution(int from) {
         PriorityQueue<Bus> queue = new PriorityQueue<>();
-        cityCost[from] = 0;
         queue.add(new Bus(from, 0));
 
         while(!queue.isEmpty()) {
@@ -57,14 +56,14 @@ public class BOJ_1916 {
             }
 
             visited[city] = true;
+            cityCost[city] = cost;
 
             ArrayList<Bus> nextBuses = buses[city];
             for (Bus nextBus : nextBuses) {
                 int nextCity = nextBus.city;
                 int nextCityCost = nextBus.cost + cost;
 
-                cityCost[nextCity] = Math.min(cityCost[nextCity], nextCityCost);
-                queue.add(new Bus(nextCity, cityCost[nextCity]));
+                queue.add(new Bus(nextCity, Math.min(cityCost[nextCity], nextCityCost)));
             }
         }
     }
