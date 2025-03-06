@@ -5,12 +5,10 @@ import java.util.Scanner;
 
 public class BOJ_1253 {
 
-    static int[] arr;
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
-        arr = new int[N];
+        int[] arr = new int[N];
 
         for (int i = 0; i < N; i++) {
             arr[i] = sc.nextInt();
@@ -18,31 +16,39 @@ public class BOJ_1253 {
 
         Arrays.sort(arr);
 
-        int start = 0;
-        int end = arr.length-1;
+        int answer = 0;
 
-        int sum = Integer.MAX_VALUE;
-        int ans1 = 0;
-        int ans2 = 0;
+        for (int i = 0; i < N; i++) {
+            int target = arr[i];
 
-        while(start<end) {
-            int value = arr[start] + arr[end];
+            int start = 0;
+            int end = N - 1;
 
-            if (Math.abs(sum)>Math.abs(value)) {
-                sum = value;
+            while (start < end) {
+                if (start == i) {
+                    start++;
+                    continue;
+                }
+                if (end == i) {
+                    end--;
+                    continue;
+                }
 
-                ans1 = arr[start];
-                ans2 = arr[end];
-            }
+                int result = arr[start] + arr[end];
 
-            if (value>0) {
-                end--;
-            }
-            else {
-                start++;
+                if (result == target) {
+                    answer++;
+                    break;
+                }
+
+                if (result < target) {
+                    start++;
+                } else {
+                    end--;
+                }
             }
         }
-        System.out.println(ans1 + " " + ans2);
 
+        System.out.println(answer);
     }
 }
