@@ -4,6 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * 1. 2차원 배열로 dp 배열 설정
+ * 2. [길이][높이]
+ * 3. 높이 0이나 높이 9의 개수는 이전 길이의 높이 1과 높이 8에만 영향을 받는다.
+ * 4. 높이 H는 이전 길이의 높이 H-1과 H+1의 영향을 받는다.
+ */
 public class BOJ_10844 {
 
     //계단의 높이
